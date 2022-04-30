@@ -1,4 +1,5 @@
 import React from 'react';
+import Result from './components/Result/Result';
 import './styles/globals.scss'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <main>
       <form>
         <input type="text" placeholder="Random me!" />
+        <Result type="recipe" />
       </form>
     </main>
     
