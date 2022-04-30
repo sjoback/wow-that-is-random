@@ -1,0 +1,21 @@
+// Constants
+@import "./constants/_colors.scss";
+@import "./constants/_form.scss";
+@import "./constants/_button.scss";
+
+// Global
+@import "_form.scss";
+@import "_button.scss";
+@import "_list.scss";
+
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../assets/bg.webp);
+  background-size: cover;
+  position: relative;
+}

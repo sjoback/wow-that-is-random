@@ -1,0 +1,11 @@
+button {
+   outline: none;
+   border: var(--button-border);
+   padding: var(--button-padding);
+   background-color: var(--button-background);
+   border-radius: var(--button-border-radius);
+
+   &:hover{
+      background-color: var(--button-background-hover);
+   }
+}

@@ -1,0 +1,13 @@
+form {
+   background-color: var(--form-background);
+   color: var(--form-color);
+
+   input {
+      outline: none;
+      border: var(--input-border);
+      padding: var(--input-padding);
+      color: var(--input-color);
+      background-color: var(--input-background);
+      border-radius: var(--input-border-radius);
+   }
+}
