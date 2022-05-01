@@ -1,11 +1,32 @@
-button {
+.btn {
    outline: none;
    border: var(--button-border);
    padding: var(--button-padding);
    background-color: var(--button-background);
+   color: var(--button-color);
    border-radius: var(--button-border-radius);
+   font-size: var(--button-font-size);
+   cursor: pointer;
+   font-weight: bold;
+   transition: 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
 
-   &:hover{
+   &:hover {
       background-color: var(--button-background-hover);
+   }
+
+   // Colors
+   &-blue {
+      --button-background: blue;
+      --button-color: #fff;
+
+      &:hover {
+         --button-background-hover: darkblue;
+      }
+   }
+
+   // Sizes
+   &-md {
+      --button-padding: 25px 40px;
+      --button-font-size: 20px;
    }
 }

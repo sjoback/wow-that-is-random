@@ -8,14 +8,20 @@
 @import "_button.scss";
 @import "_list.scss";
 
-
 main {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(../assets/bg.webp);
-  background-size: cover;
-  position: relative;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   position: relative;
+   background-color: #fff;
+
+   form {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 20px;
+   }
 }

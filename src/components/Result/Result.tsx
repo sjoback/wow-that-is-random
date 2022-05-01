@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import { Component } from 'react';
 import styles from './Result.module.scss'
@@ -9,28 +8,12 @@ interface propTypes {
     type: string;
 }
 
-function Result(props: propTypes){
-    const type = props.type;
-
-    const Components = {
-        recipe: ResultRecipe,
-        workout: ResultWorkout
-    }
-   
-    // if (typeof Components[type] !== "undefined") {
-    // return React.createElement(Components[type]);
-    // }
-
-    render{
-
-        return (
-            <div className={styles.container}>
-                {type}
-                <Component />
-            </div>
-        )
-    }
-  }
-
+function Result(props: propTypes) {
+    return (
+        <div className={styles.container}>
+            {props.type}
+        </div>
+    )
+}
 
 export default Result
