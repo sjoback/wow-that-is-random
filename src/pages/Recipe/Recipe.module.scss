@@ -1,3 +1,106 @@
 .container {
-    
+   position: relative;
+   .showResult {
+      animation: 0.3s showResult forwards;
+   }
+
+   @keyframes showResult {
+      from {
+         height: 100vh;
+      }
+      to {
+         height: 400px;
+      }
+   }
+
+   // .hideResult {
+   //    animation: 0.3s showResult reverse forwards;
+   // }
+
+   &Options {
+      width: 100vw;
+      height: 100vh;
+
+      background-image: url(../../assets/food3.webp);
+      // background-size: cover;
+      gap: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      box-sizing: border-box;
+
+      .optionsInner {
+         position: relative;
+         z-index: 1;
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr;
+         gap: 20px;
+         //    // justify-content: center;
+         //    // flex-wrap: wrap;
+         width: 900px;
+         max-width: 100%;
+
+         .button {
+            transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+            border: 1px solid #fff;
+            cursor: pointer;
+            display: grid;
+            gap: 20px;
+            place-items: center;
+            background-color: #fff;
+            border-radius: 25px;
+            padding: 60px;
+            box-sizing: border-box;
+
+            &:hover {
+               // box-shadow: none;
+               border-color: #999;
+            }
+
+            img {
+               max-width: 100%;
+               width: 150px;
+               height: 150px;
+            }
+         }
+      }
+   }
+
+   &Result {
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      padding: 40px;
+      box-sizing: border-box;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+
+      .close {
+         position: absolute;
+         right: 40px;
+         top: 40px;
+         background-color: red;
+         width: 50px;
+         height: 50px;
+      }
+
+      .content {
+         width: 900px;
+         max-width: 100%;
+
+         h1 {
+            text-transform: capitalize;
+         }
+      }
+
+      .overlay {
+         width: 100%;
+         height: 100%;
+         position: absolute;
+         background-color: rgba(0, 0, 0, 0.7);
+      }
+   }
 }

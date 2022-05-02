@@ -1,40 +1,134 @@
-import { useState } from 'react';
-import styles from './Recipe.module.scss'
+import { useState } from "react";
+import Button from "../../components/Button/Button";
+import Result from "../../components/Result/Result";
+import styles from "./Recipe.module.scss";
+
+import noMeat from "../../assets/no-meat.svg"; // relative path to image
+import meat from "../../assets/meat.svg"; // relative path to image
+import random from "../../assets/random.svg"; // relative path to image
+import Overlay from "../../components/Overlay/Overlay";
 
 function Recipe() {
-    const [fetching, setFetching] = useState(false)
-    const [showResult, setShowResult] = useState(false)
+   const [title, setTitle] = useState("");
+   const [fetching, setFetching] = useState(false);
+   const [showResult, setShowResult] = useState(false);
+   const [result, setResult] = useState({});
 
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Host': 'yummly2.p.rapidapi.com',
-            'X-RapidAPI-Key': '8d423d3f85msh40e1cf5ff2656b6p14d206jsn0ba38bc45a3c'
-        }
-    };
+   function randomNumber(length: number) {
+      const rand = Math.random() * length;
+      return Math.floor(rand);
+   }
 
-    const fetchData = () => {
-        setFetching(true)
-        fetch('https://yummly2.p.rapidapi.com/feeds/list', options)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response)
-                setShowResult(true)
-            })
-            .catch(err => console.error(err));
-    }
+   const getMeat = async () => {
+      Promise.all([
+         fetch(
+            "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork"
+         ).then((value) => value.json()),
+         fetch(
+            "https://www.themealdb.com/api/json/v1/1/filter.php?c=Lamb"
+         ).then((value) => value.json()),
+         fetch(
+            "https://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken"
+         ).then((value) => value.json()),
+         fetch(
+            "https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef"
+         ).then((value) => value.json()),
+      ])
+         .then((value) => {
+            const meals = {
+               ...value[0].meals,
+               ...value[1].meals,
+               ...value[2].meals,
+               ...value[3].meals,
+            };
+            const length = Object.keys(meals).length;
+            setTitle("meat");
+            setResult(meals[randomNumber(length)]);
+            setShowResult(true);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
 
-    return (
-        <div className={styles.container}>
-            <form>
-                <input type="text" placeholder="Random me!" />
-                <button type="button" onClick={fetchData}>click</button>
-                {/* {showResult &&
-                    <Result type="recipe" />
-                } */}
-            </form>
-        </div>
-    )
+   const getNoMeat = async () => {
+      Promise.all([
+         fetch(
+            "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan"
+         ).then((value) => value.json()),
+
+         fetch(
+            "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian"
+         ).then((value) => value.json()),
+      ])
+         .then((value) => {
+            const meals = {
+               ...value[0].meals,
+               ...value[1].meals,
+            };
+            const length = Object.keys(meals).length;
+            setTitle("no meat");
+            setResult(meals[randomNumber(length)]);
+            setShowResult(true);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   };
+
+   const getRandom = async () => {
+      const response = await fetch(
+         "https://www.themealdb.com/api/json/v1/1/random.php"
+      );
+      const result = await response.json();
+      setTitle("random");
+      setResult(result.meals[0]);
+      setShowResult(true);
+   };
+
+   const optionsClasses = `${styles.containerOptions} ${
+      showResult ? styles.showResult : styles.hideResult
+   }`;
+
+   return (
+      <div className={styles.container}>
+         <div className={optionsClasses}>
+            <div className={styles.optionsInner}>
+               <div className={styles.button} onClick={getNoMeat}>
+                  <img src={noMeat} alt="" />
+                  {/* <span>No meat</span> */}
+               </div>
+
+               <div className={styles.button} onClick={getMeat}>
+                  <img src={meat} alt="" />
+                  {/* <span>Meat</span> */}
+               </div>
+
+               <div className={styles.button} onClick={getRandom}>
+                  <img src={random} alt="" />
+                  {/* <span>Random</span> */}
+               </div>
+            </div>
+
+            <Overlay opacity={0.1} />
+         </div>
+
+         {showResult && (
+            <div className={styles.containerResult}>
+               <div
+                  onClick={() => {
+                     setShowResult(false), setResult({});
+                  }}
+                  className={styles.close}
+               ></div>
+               <div className={styles.content}>
+                  <h1>{title} recipe</h1>
+                  {JSON.stringify(result)}
+               </div>
+            </div>
+         )}
+      </div>
+   );
 }
 
 export default Recipe;
