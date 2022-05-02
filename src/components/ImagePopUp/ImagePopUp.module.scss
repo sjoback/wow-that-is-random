@@ -1,0 +1,30 @@
+.container {
+   position: relative;
+
+   .open {
+      background-color: rgba(0, 0, 0, 0.75);
+      z-index: 99;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+         border-radius: 20px;
+      }
+   }
+
+   .closed {
+      cursor: pointer;
+
+      img {
+         border-radius: 20px;
+         width: 150px;
+         height: 150px;
+      }
+   }
+}
