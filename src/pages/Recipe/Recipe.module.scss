@@ -36,8 +36,6 @@
          display: grid;
          grid-template-columns: 1fr 1fr 1fr;
          gap: 20px;
-         //    // justify-content: center;
-         //    // flex-wrap: wrap;
          width: 900px;
          max-width: 100%;
 
@@ -55,7 +53,6 @@
             box-sizing: border-box;
 
             &:hover {
-               // box-shadow: none;
                border-color: #999;
             }
 

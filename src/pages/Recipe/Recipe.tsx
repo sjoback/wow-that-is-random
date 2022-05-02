@@ -114,18 +114,7 @@ function Recipe() {
          </div>
 
          {showResult && (
-            <div className={styles.containerResult}>
-               <div
-                  onClick={() => {
-                     setShowResult(false), setResult({});
-                  }}
-                  className={styles.close}
-               ></div>
-               <div className={styles.content}>
-                  <h1>{title} recipe</h1>
-                  {JSON.stringify(result)}
-               </div>
-            </div>
+            <Result type="recipe" result={JSON.stringify(result)} />
          )}
       </div>
    );

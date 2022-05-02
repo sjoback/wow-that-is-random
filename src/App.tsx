@@ -1,20 +1,17 @@
-import React, { useState } from "react";
-import Button from "./components/Button/Button";
-import Result from "./components/Result/Result";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Recipe from "./pages/Recipe/Recipe";
+// import Workout from "./pages/Workout/Workout";
 import "./styles/globals.scss";
 
 function App() {
    return (
-      <main>
-         <div className="main-container">
-            <h1>What randomness are you looking for?</h1>
-
-            <div className="main-container__buttons">
-               <Button type="link" color="blue" size="md" />
-               <Button text="test" color="red" size="md" />
-            </div>
-         </div>
-      </main>
+      <BrowserRouter>
+         <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="recipe" element={<Recipe />} />
+         </Routes>
+      </BrowserRouter>
    );
 }
 
