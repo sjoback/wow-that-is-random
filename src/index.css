@@ -12,13 +12,3 @@ body {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 }
-
-.main-container {
-   margin-top: -200px;
-
-   &__buttons {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: 1fr 1fr;
-   }
-}
