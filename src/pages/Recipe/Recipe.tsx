@@ -7,12 +7,13 @@ import noMeat from "../../assets/no-meat.svg"; // relative path to image
 import meat from "../../assets/meat.svg"; // relative path to image
 import random from "../../assets/random.svg"; // relative path to image
 import Overlay from "../../components/Overlay/Overlay";
+import { motion, MotionConfig } from "framer-motion";
 
 function Recipe() {
    const [title, setTitle] = useState("");
    const [fetching, setFetching] = useState(false);
    const [showResult, setShowResult] = useState(false);
-   const [result, setResult] = useState({});
+   const [result, setResult] = useState("");
 
    function randomNumber(length: number) {
       const rand = Math.random() * length;
@@ -20,6 +21,7 @@ function Recipe() {
    }
 
    const getMeat = async () => {
+      setResult("");
       Promise.all([
          fetch(
             "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork"
@@ -52,6 +54,8 @@ function Recipe() {
    };
 
    const getNoMeat = async () => {
+      setResult("");
+
       Promise.all([
          fetch(
             "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan"
@@ -77,6 +81,8 @@ function Recipe() {
    };
 
    const getRandom = async () => {
+      setResult("");
+
       const response = await fetch(
          "https://www.themealdb.com/api/json/v1/1/random.php"
       );
@@ -87,34 +93,83 @@ function Recipe() {
    };
 
    const optionsClasses = `${styles.containerOptions} ${
-      showResult ? styles.showResult : styles.hideResult
+      showResult ? styles.showResult : ""
    }`;
+
+   const list = {
+      show: {
+         opacity: 1,
+         transition: {
+            duration: 0.2,
+            when: "beforeChildren",
+            staggerChildren: 0.1,
+         },
+      },
+      hidden: {
+         opacity: 0,
+         transition: {
+            when: "afterChildren",
+         },
+      },
+   };
+
+   const listItem = {
+      show: { opacity: 1, scale: [0.9, 1.05, 0.975, 1] },
+      hidden: { opacity: 0, scale: 0.9 },
+   };
 
    return (
       <div className={styles.container}>
          <div className={optionsClasses}>
-            <div className={styles.optionsInner}>
-               <div className={styles.button} onClick={getNoMeat}>
-                  <img src={noMeat} alt="" />
-                  {/* <span>No meat</span> */}
-               </div>
+            <div className={styles.grid}>
+               {/* <h1>What do you wanna eat?</h1> */}
 
-               <div className={styles.button} onClick={getMeat}>
-                  <img src={meat} alt="" />
-                  {/* <span>Meat</span> */}
-               </div>
+               <motion.ul
+                  className={styles.optionsInner}
+                  variants={list}
+                  initial="hidden"
+                  animate="show"
+               >
+                  <motion.li
+                     variants={listItem}
+                     key="no meat"
+                     className={styles.button}
+                     onClick={getNoMeat}
+                  >
+                     <img src={noMeat} alt="No meat" loading="eager" />
+                  </motion.li>
 
-               <div className={styles.button} onClick={getRandom}>
-                  <img src={random} alt="" />
-                  {/* <span>Random</span> */}
-               </div>
+                  <motion.li
+                     variants={listItem}
+                     key="meat"
+                     className={styles.button}
+                     onClick={getMeat}
+                  >
+                     <img src={meat} alt="Meat" loading="eager" />
+                  </motion.li>
+
+                  <motion.li
+                     variants={listItem}
+                     key="random"
+                     className={styles.button}
+                     onClick={getRandom}
+                  >
+                     <img src={random} alt="Random" loading="eager" />
+                  </motion.li>
+               </motion.ul>
             </div>
 
-            <Overlay opacity={0.1} />
+            <Overlay opacity={0.3} />
          </div>
 
          {showResult && (
-            <Result type="recipe" result={JSON.stringify(result)} />
+            <Result
+               onClick={() => {
+                  setShowResult(false), setResult("");
+               }}
+               type="recipe"
+               result={JSON.stringify(result)}
+            />
          )}
       </div>
    );

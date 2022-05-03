@@ -24,13 +24,13 @@ function ImagePopUp(props: propTypes) {
    return (
       <div className={styles.container}>
          <div className={styles.closed} onClick={() => toggleOpen(true)}>
-            <img src={props.image} alt={props.alt} />
+            <img src={props.image} loading="eager" alt={props.alt} />
          </div>
 
          {open && (
             <div className={styles.open} onClick={() => toggleOpen(false)}>
                <Overlay opacity={0.1} />
-               <img src={props.image} alt={props.alt} />
+               <img src={props.image} loading="lazy" alt={props.alt} />
             </div>
          )}
       </div>

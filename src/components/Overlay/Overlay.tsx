@@ -1,7 +1,7 @@
 import styles from "./Overlay.module.scss";
 
 interface propTypes {
-   opacity?: 0.1;
+   opacity?: number;
 }
 
 function Overlay(props: propTypes) {

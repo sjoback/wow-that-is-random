@@ -9,6 +9,7 @@ import ImagePopUp from "../ImagePopUp/ImagePopUp";
 interface propTypes {
    type: string;
    result: string;
+   onClick(): any;
 }
 
 const Components = {
@@ -19,25 +20,37 @@ const Components = {
 function Result(props: propTypes) {
    const [open, toggleOpen] = useState(true);
    const result = JSON.parse(props.result);
-   console.log(props.result);
 
    const variants = {
-      open: { opacity: 1, x: 0 },
-      closed: { opacity: 0, x: "-100%" },
+      open: { opacity: 1, y: 0, duration: 2 },
+      closed: { opacity: 0, y: "60px", duration: 2 },
+   };
+
+   const exitVariants = {
+      opacity: 0,
+      y: "-60px",
+      duration: 2,
    };
 
    return (
       <div className={styles.container}>
-         <div className={styles.close} />
-
-         <div className={styles.content}>
+         <motion.div
+            animate={props.result.length > 2 ? "open" : "closed"}
+            variants={variants}
+            exit={exitVariants}
+            className={styles.content}
+         >
             <ImagePopUp alt={result.strMeal} image={result.strMealThumb} />
 
             <div className={styles.contentRight}>
+               <p>
+                  <b>Category: </b>
+                  {props.type}
+               </p>
                <h1>{result.strMeal}</h1>
-               <p>{props.result}</p>
+               {/* <p>{props.result}</p> */}
             </div>
-         </div>
+         </motion.div>
       </div>
    );
 }
