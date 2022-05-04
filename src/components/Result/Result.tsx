@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-import { Component } from "react";
 import styles from "./Result.module.scss";
-import ResultRecipe from "./ResultRecipe/ResultRecipe";
-import ResultWorkout from "./ResultWorkout/ResultWorkout";
 import { motion } from "framer-motion";
 import ImagePopUp from "../ImagePopUp/ImagePopUp";
 
@@ -11,11 +7,6 @@ interface propTypes {
    result: string;
    category: string;
 }
-
-const Components = {
-   recipe: ResultRecipe,
-   workout: ResultWorkout,
-};
 
 function Result(props: propTypes) {
    const result = JSON.parse(props.result);
