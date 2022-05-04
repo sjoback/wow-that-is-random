@@ -1,0 +1,42 @@
+@import "../../styles/mixins";
+
+.container {
+   position: relative;
+
+   .open {
+      background-color: rgba(0, 0, 0, 0.75);
+      z-index: 99;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+         max-width: calc(100% - 40px);
+      }
+
+      img {
+         border-radius: 20px;
+         width: 100%;
+      }
+   }
+
+   .closed {
+      cursor: pointer;
+
+      img {
+         border-radius: 20px;
+         width: 80px;
+         height: 80px;
+
+         @include breakpoint("tablet") {
+            width: 150px;
+            height: 150px;
+         }
+      }
+   }
+}

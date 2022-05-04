@@ -1,0 +1,63 @@
+.btn {
+   outline: none;
+   border: var(--button-border);
+   padding: var(--button-padding);
+   background-color: var(--button-background);
+   color: var(--button-color);
+   border-radius: var(--button-border-radius);
+   font-size: var(--button-font-size);
+   cursor: pointer;
+   text-decoration: none;
+   text-align: center;
+   font-weight: bold;
+   transition: 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
+   box-shadow: var(--box-shadow);
+
+   &:hover {
+      background-color: var(--button-background-hover);
+   }
+
+   &-disabled {
+      opacity: 0.5;
+      pointer-events: none;
+   }
+
+   &-blue,
+   &-active {
+      --button-background: blue;
+      --button-color: #fff;
+
+      &:hover {
+         --button-background-hover: darkblue;
+      }
+   }
+
+   &-green {
+      --button-background: green;
+      --button-color: #fff;
+
+      &:hover {
+         --button-background-hover: darkgreen;
+      }
+   }
+
+   &-orange {
+      --button-background: var(--color-orange);
+      --button-color: #fff;
+
+      &:hover {
+         --button-background-hover: var(--color-orange-dark);
+      }
+   }
+
+   &-submit {
+      width: 100%;
+      font-size: 24px;
+      --button-padding: 30px 50px;
+   }
+
+   &-md {
+      --button-padding: 25px 40px;
+      --button-font-size: 20px;
+   }
+}

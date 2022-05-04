@@ -1,0 +1,27 @@
+.container {
+   position: fixed;
+   display: flex;
+   align-items: center;
+   left: 0;
+   top: 0;
+   width: 100%;
+   z-index: 98;
+   padding-top: 10px;
+
+   a {
+      padding: 10px 40px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #fff;
+      font-size: 16px;
+
+      &:first-child {
+         padding: 0 20px;
+
+         img {
+            width: 50px;
+            height: 50px;
+         }
+      }
+   }
+}
