@@ -1,11 +1,9 @@
 import { useState } from "react";
 import Result from "../../components/Result/Result";
 import styles from "./Recipe.module.scss";
-
 import noMeat from "../../assets/no-meat.svg";
 import meat from "../../assets/meat.svg";
 import random from "../../assets/random.svg";
-import Overlay from "../../components/Overlay/Overlay";
 import { motion } from "framer-motion";
 
 function Recipe() {
@@ -96,30 +94,21 @@ function Recipe() {
       setShowResult(true);
    };
 
-   // const optionsClasses = `${styles.containerOptions} ${
-   //    showResult ? styles.showResult : ""
-   // }`;
-
    const list = {
       show: {
-         opacity: 1,
          transition: {
             duration: 0.2,
-            when: "beforeChildren",
-            staggerChildren: 0.1,
          },
+         opacity: 1,
+         scale: 1,
       },
       hidden: {
-         opacity: 0,
          transition: {
-            when: "afterChildren",
+            duration: 0.2,
          },
+         scale: 0.95,
+         opacity: 1,
       },
-   };
-
-   const listItem = {
-      show: { opacity: 1, scale: [0.9, 1.05, 0.975, 1] },
-      hidden: { opacity: 0, scale: 0.9 },
    };
 
    return (
@@ -132,7 +121,6 @@ function Recipe() {
                animate="show"
             >
                <motion.li
-                  variants={listItem}
                   key="no meat"
                   className="btn-icon"
                   onClick={getNoMeat}
@@ -140,26 +128,14 @@ function Recipe() {
                   <img src={noMeat} alt="No meat" loading="eager" />
                </motion.li>
 
-               <motion.li
-                  variants={listItem}
-                  key="meat"
-                  className="btn-icon"
-                  onClick={getMeat}
-               >
+               <motion.li key="meat" className="btn-icon" onClick={getMeat}>
                   <img src={meat} alt="Meat" loading="eager" />
                </motion.li>
 
-               <motion.li
-                  variants={listItem}
-                  key="random"
-                  className="btn-icon"
-                  onClick={getRandom}
-               >
+               <motion.li key="random" className="btn-icon" onClick={getRandom}>
                   <img src={random} alt="Random" loading="eager" />
                </motion.li>
             </motion.ul>
-
-            <Overlay opacity={0.3} />
          </div>
 
          {showResult && (

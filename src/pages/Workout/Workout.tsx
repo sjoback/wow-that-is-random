@@ -1,11 +1,7 @@
 import styles from "./Workout.module.scss";
 
 function Workout() {
-   return (
-      <div className={styles.container}>
-         <h1>Coming soon..</h1>
-      </div>
-   );
+   return <div className={styles.container}></div>;
 }
 
 export default Workout;
