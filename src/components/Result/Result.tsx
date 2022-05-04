@@ -10,7 +10,6 @@ interface propTypes {
    type: string;
    result: string;
    category: string;
-   onClick(): any;
 }
 
 const Components = {
@@ -19,7 +18,6 @@ const Components = {
 };
 
 function Result(props: propTypes) {
-   const [open, toggleOpen] = useState(true);
    const result = JSON.parse(props.result);
 
    const variants = {
