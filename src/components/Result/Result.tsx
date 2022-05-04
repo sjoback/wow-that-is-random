@@ -49,11 +49,6 @@ function Result(props: propTypes) {
                   {props.category}
                </p>
                <h1>{result.strMeal}</h1>
-               {/* <p>{result.strTags}</p> */}
-               {/* <ul>
-                  {}
-                  <li></li>
-               </ul> */}
             </div>
          </motion.div>
       </div>
