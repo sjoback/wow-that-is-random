@@ -1,5 +1,12 @@
 .container {
-   margin-top: -100px;
+   position: relative;
+   height: 100%;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-image: url(../../assets/random.jpeg);
+   background-size: cover;
 
    h1 {
       margin: 0 0 40px 0;

@@ -11,6 +11,7 @@
    text-align: center;
    font-weight: bold;
    transition: 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
+   box-shadow: var(--box-shadow);
 
    &:hover {
       background-color: var(--button-background-hover);
@@ -38,6 +39,15 @@
 
       &:hover {
          --button-background-hover: darkgreen;
+      }
+   }
+
+   &-orange {
+      --button-background: var(--color-orange);
+      --button-color: #fff;
+
+      &:hover {
+         --button-background-hover: var(--color-orange-dark);
       }
    }
 

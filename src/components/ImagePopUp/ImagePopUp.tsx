@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import Overlay from "../Overlay/Overlay";
+import { useCallback, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import styles from "./ImagePopUp.module.scss";
 
 interface propTypes {
@@ -10,16 +10,28 @@ interface propTypes {
 function ImagePopUp(props: propTypes) {
    const [open, toggleOpen] = useState(false);
 
-   // Enable ESC for closing modal
-   // useEffect(() => {
-   //    const close = (e) => {
-   //       if (e.keyCode === 27) {
-   //          toggleOpen(false);
-   //       }
-   //    };
-   //    window.addEventListener("keydown", close);
-   //    return () => window.removeEventListener("keydown", close);
-   // }, []);
+   const imageContainer = {
+      show: {
+         display: "flex",
+         opacity: 1,
+      },
+      hidden: {
+         display: "none",
+         opacity: 0,
+      },
+   };
+
+   const escFunction = useCallback((event: { keyCode: number }) => {
+      if (event.keyCode === 27) toggleOpen(false);
+   }, []);
+
+   useEffect(() => {
+      document.addEventListener("keydown", escFunction);
+
+      return () => {
+         document.removeEventListener("keydown", escFunction);
+      };
+   }, [escFunction]);
 
    return (
       <div className={styles.container}>
@@ -28,10 +40,17 @@ function ImagePopUp(props: propTypes) {
          </div>
 
          {open && (
-            <div className={styles.open} onClick={() => toggleOpen(false)}>
-               <Overlay opacity={0.1} />
-               <img src={props.image} loading="lazy" alt={props.alt} />
-            </div>
+            <motion.div
+               initial="hidden"
+               animate="show"
+               variants={imageContainer}
+               className={styles.open}
+               onClick={() => toggleOpen(false)}
+            >
+               <div>
+                  <img src={props.image} loading="lazy" alt={props.alt} />
+               </div>
+            </motion.div>
          )}
       </div>
    );

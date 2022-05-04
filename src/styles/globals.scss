@@ -1,7 +1,7 @@
 /* Constants */
-@import "./constants/_colors.scss";
-@import "./constants/_form.scss";
-@import "./constants/_button.scss";
+@import "constants/_colors.scss";
+@import "constants/_form.scss";
+@import "constants/_button.scss";
 
 /* Global */
 @import "_form.scss";
@@ -9,19 +9,30 @@
 @import "_list.scss";
 
 main {
-   width: 100vw;
-   height: 100vh;
    display: flex;
+   height: 100vh;
+   width: 100vw;
    justify-content: center;
    align-items: center;
-
    position: relative;
    background-color: #fff;
+}
 
-   form {
+.main {
+   padding-top: 60px;
+   height: 100%;
+   width: 100%;
+}
+
+nav a:first-child {
+   background-color: transparent;
+   box-shadow: none;
+}
+nav {
+   .active {
       position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 20px;
+      box-shadow: var(--box-shadow);
+      background-color: var(--color-orange);
+      border-radius: 30px;
    }
 }

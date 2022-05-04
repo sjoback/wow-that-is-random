@@ -1,3 +1,5 @@
+@import "../../styles/mixins";
+
 .container {
    position: relative;
 
@@ -13,8 +15,13 @@
       justify-content: center;
       align-items: center;
 
+      div {
+         max-width: calc(100% - 40px);
+      }
+
       img {
          border-radius: 20px;
+         width: 100%;
       }
    }
 
@@ -23,8 +30,13 @@
 
       img {
          border-radius: 20px;
-         width: 150px;
-         height: 150px;
+         width: 80px;
+         height: 80px;
+
+         @include breakpoint("tablet") {
+            width: 150px;
+            height: 150px;
+         }
       }
    }
 }

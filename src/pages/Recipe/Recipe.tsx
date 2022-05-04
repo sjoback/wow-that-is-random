@@ -1,19 +1,17 @@
 import { useState } from "react";
-import Button from "../../components/Button/Button";
 import Result from "../../components/Result/Result";
 import styles from "./Recipe.module.scss";
 
-import noMeat from "../../assets/no-meat.svg"; // relative path to image
-import meat from "../../assets/meat.svg"; // relative path to image
-import random from "../../assets/random.svg"; // relative path to image
+import noMeat from "../../assets/no-meat.svg";
+import meat from "../../assets/meat.svg";
+import random from "../../assets/random.svg";
 import Overlay from "../../components/Overlay/Overlay";
-import { motion, MotionConfig } from "framer-motion";
+import { motion } from "framer-motion";
 
 function Recipe() {
-   const [title, setTitle] = useState("");
-   const [fetching, setFetching] = useState(false);
    const [showResult, setShowResult] = useState(false);
    const [result, setResult] = useState("");
+   const [category, setCategory] = useState("");
 
    function randomNumber(length: number) {
       const rand = Math.random() * length;
@@ -22,6 +20,7 @@ function Recipe() {
 
    const getMeat = async () => {
       setResult("");
+      setCategory("Meat");
       Promise.all([
          fetch(
             "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork"
@@ -44,18 +43,26 @@ function Recipe() {
                ...value[3].meals,
             };
             const length = Object.keys(meals).length;
-            setTitle("meat");
-            setResult(meals[randomNumber(length)]);
-            setShowResult(true);
+            getRecipeById(meals[randomNumber(length)].idMeal);
          })
          .catch((err) => {
             console.log(err);
          });
    };
 
+   const getRecipeById = async (id: number) => {
+      const response = await fetch(
+         `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+      );
+      const result = await response.json();
+      console.log(result.meals[0]);
+      setResult(result.meals[0]);
+      setShowResult(true);
+   };
+
    const getNoMeat = async () => {
       setResult("");
-
+      setCategory("No meat");
       Promise.all([
          fetch(
             "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan"
@@ -71,9 +78,7 @@ function Recipe() {
                ...value[1].meals,
             };
             const length = Object.keys(meals).length;
-            setTitle("no meat");
-            setResult(meals[randomNumber(length)]);
-            setShowResult(true);
+            getRecipeById(meals[randomNumber(length)].idMeal);
          })
          .catch((err) => {
             console.log(err);
@@ -82,12 +87,11 @@ function Recipe() {
 
    const getRandom = async () => {
       setResult("");
-
+      setCategory("Random");
       const response = await fetch(
          "https://www.themealdb.com/api/json/v1/1/random.php"
       );
       const result = await response.json();
-      setTitle("random");
       setResult(result.meals[0]);
       setShowResult(true);
    };
@@ -121,43 +125,39 @@ function Recipe() {
    return (
       <div className={styles.container}>
          <div className={optionsClasses}>
-            <div className={styles.grid}>
-               {/* <h1>What do you wanna eat?</h1> */}
-
-               <motion.ul
-                  className={styles.optionsInner}
-                  variants={list}
-                  initial="hidden"
-                  animate="show"
+            <motion.ul
+               className={styles.list}
+               variants={list}
+               initial="hidden"
+               animate="show"
+            >
+               <motion.li
+                  variants={listItem}
+                  key="no meat"
+                  className={styles.button}
+                  onClick={getNoMeat}
                >
-                  <motion.li
-                     variants={listItem}
-                     key="no meat"
-                     className={styles.button}
-                     onClick={getNoMeat}
-                  >
-                     <img src={noMeat} alt="No meat" loading="eager" />
-                  </motion.li>
+                  <img src={noMeat} alt="No meat" loading="eager" />
+               </motion.li>
 
-                  <motion.li
-                     variants={listItem}
-                     key="meat"
-                     className={styles.button}
-                     onClick={getMeat}
-                  >
-                     <img src={meat} alt="Meat" loading="eager" />
-                  </motion.li>
+               <motion.li
+                  variants={listItem}
+                  key="meat"
+                  className={styles.button}
+                  onClick={getMeat}
+               >
+                  <img src={meat} alt="Meat" loading="eager" />
+               </motion.li>
 
-                  <motion.li
-                     variants={listItem}
-                     key="random"
-                     className={styles.button}
-                     onClick={getRandom}
-                  >
-                     <img src={random} alt="Random" loading="eager" />
-                  </motion.li>
-               </motion.ul>
-            </div>
+               <motion.li
+                  variants={listItem}
+                  key="random"
+                  className={styles.button}
+                  onClick={getRandom}
+               >
+                  <img src={random} alt="Random" loading="eager" />
+               </motion.li>
+            </motion.ul>
 
             <Overlay opacity={0.3} />
          </div>
@@ -167,6 +167,7 @@ function Recipe() {
                onClick={() => {
                   setShowResult(false), setResult("");
                }}
+               category={category}
                type="recipe"
                result={JSON.stringify(result)}
             />

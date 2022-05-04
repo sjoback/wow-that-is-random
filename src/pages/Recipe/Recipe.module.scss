@@ -1,5 +1,9 @@
+@import "../../styles/mixins";
+
 .container {
    position: relative;
+   height: 100%;
+   width: 100%;
 
    .showResult {
       animation: 0.3s showResult forwards;
@@ -10,61 +14,80 @@
          height: 100vh;
       }
       to {
-         height: 400px;
+         height: 250px;
+      }
+   }
+   @include breakpoint("tablet") {
+      @keyframes showResult {
+         from {
+            height: 100vh;
+         }
+         to {
+            height: 450px;
+         }
       }
    }
 
    &Options {
       width: 100vw;
       height: 100vh;
-
-      background-image: url(../../assets/food3.webp);
-      // background-size: cover;
+      position: relative;
       gap: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px;
+      background-image: url(../../assets/food3.webp);
+      padding: 20px;
       box-sizing: border-box;
+      padding-top: 80px;
 
-      .grid {
-         display: grid;
-         gap: 30px;
-         place-items: center;
-         color: #fff;
-         z-index: 1;
+      @include breakpoint("tablet") {
+         padding: 40px;
+         padding-top: 80px;
       }
 
-      .optionsInner {
-         position: relative;
-         z-index: 1;
+      .list {
          display: grid;
          grid-template-columns: 1fr 1fr 1fr;
-         gap: 20px;
+         gap: 10px;
+         position: relative;
+         z-index: 1;
          width: 900px;
          max-width: 100%;
+         @include breakpoint("tablet") {
+            gap: 20px;
+         }
 
          .button {
             transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
-            box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
-            border: 1px solid #fff;
+            box-shadow: var(--box-shadow);
+            border: 2px solid #fff;
             cursor: pointer;
             display: grid;
             gap: 20px;
             place-items: center;
             background-color: #fff;
             border-radius: 25px;
-            padding: 60px;
+            padding: 20px;
             box-sizing: border-box;
 
+            @include breakpoint("tablet") {
+               padding: 60px;
+            }
+
             &:hover {
-               border-color: #999;
+               border-color: var(--color-orange);
             }
 
             img {
                max-width: 100%;
-               width: 150px;
-               height: 150px;
+               width: 80px;
+               height: 80px;
+
+               @include breakpoint("tablet") {
+                  width: 150px;
+                  height: 150px;
+               }
             }
          }
       }
