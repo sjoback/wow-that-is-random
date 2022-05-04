@@ -1,0 +1,25 @@
+.container {
+   position: relative;
+
+   .bot {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 70px;
+      height: 70px;
+      box-shadow: var(--box-shadow);
+      cursor: pointer;
+      border-radius: 50px;
+      background-color: var(--color-main);
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 30px;
+
+      &:hover {
+         background-color: var(--color-main-hover);
+      }
+   }
+}

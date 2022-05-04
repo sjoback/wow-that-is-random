@@ -1,27 +1,19 @@
-import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
+import bag from "../../assets/hot-pot.webp";
+import wo from "../../assets/wo.svg";
 
 function Home() {
    return (
       <div className={styles.container}>
-         {/* <h1>What randomness are you looking for?</h1> */}
-
          <div className={styles.containerButtons}>
-            <Button
-               component="link"
-               to="/recipe"
-               text="I'm hungry"
-               color="orange"
-               size="md"
-            />
+            <Link to="/recipe" className="btn-icon">
+               <img src={bag} alt="Meat" loading="eager" />
+            </Link>
 
-            <Button
-               component="link"
-               to="/workout"
-               text="I need to workout"
-               color="red"
-               size="md"
-            />
+            <Link to="/workout" className="btn-icon">
+               <img src={wo} alt="Meat" loading="eager" />
+            </Link>
          </div>
       </div>
    );

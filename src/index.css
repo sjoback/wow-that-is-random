@@ -12,3 +12,14 @@ body {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 }
+
+body.theme-purple {
+   --color-main: var(--color-purple);
+   --color-main-gradient: linear-gradient(
+      180deg,
+      rgba(170, 137, 245, 1) 0%,
+      rgba(126, 77, 241, 1) 100%
+   );
+   --color-main-hover: var(--color-purple-dark);
+   --color-second: var(--color-orange);
+}

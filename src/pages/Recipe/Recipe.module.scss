@@ -4,29 +4,8 @@
    position: relative;
    height: 100%;
    width: 100%;
-
-   .showResult {
-      animation: 0.3s showResult forwards;
-   }
-
-   @keyframes showResult {
-      from {
-         height: 100vh;
-      }
-      to {
-         height: 250px;
-      }
-   }
-   @include breakpoint("tablet") {
-      @keyframes showResult {
-         from {
-            height: 100vh;
-         }
-         to {
-            height: 450px;
-         }
-      }
-   }
+   background-image: url(../../assets/food3.webp);
+   background-size: cover;
 
    &Options {
       width: 100vw;
@@ -36,7 +15,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-image: url(../../assets/food3.webp);
       padding: 20px;
       box-sizing: border-box;
       padding-top: 80px;
@@ -56,39 +34,6 @@
          max-width: 100%;
          @include breakpoint("tablet") {
             gap: 20px;
-         }
-
-         .button {
-            transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
-            box-shadow: var(--box-shadow);
-            border: 2px solid #fff;
-            cursor: pointer;
-            display: grid;
-            gap: 20px;
-            place-items: center;
-            background-color: #fff;
-            border-radius: 25px;
-            padding: 20px;
-            box-sizing: border-box;
-
-            @include breakpoint("tablet") {
-               padding: 60px;
-            }
-
-            &:hover {
-               border-color: var(--color-orange);
-            }
-
-            img {
-               max-width: 100%;
-               width: 80px;
-               height: 80px;
-
-               @include breakpoint("tablet") {
-                  width: 150px;
-                  height: 150px;
-               }
-            }
          }
       }
    }

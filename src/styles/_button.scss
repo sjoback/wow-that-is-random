@@ -10,7 +10,8 @@
    text-decoration: none;
    text-align: center;
    font-weight: bold;
-   transition: 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
+   transition: var(--transition);
+
    box-shadow: var(--box-shadow);
 
    &:hover {
@@ -22,22 +23,11 @@
       pointer-events: none;
    }
 
-   &-blue,
-   &-active {
-      --button-background: blue;
-      --button-color: #fff;
+   &-main {
+      --button-background: var(--color-main);
 
       &:hover {
-         --button-background-hover: darkblue;
-      }
-   }
-
-   &-green {
-      --button-background: green;
-      --button-color: #fff;
-
-      &:hover {
-         --button-background-hover: darkgreen;
+         --button-background-hover: var(--color-main-hover);
       }
    }
 
@@ -50,14 +40,41 @@
       }
    }
 
-   &-submit {
-      width: 100%;
-      font-size: 24px;
-      --button-padding: 30px 50px;
-   }
-
    &-md {
       --button-padding: 25px 40px;
       --button-font-size: 20px;
+   }
+
+   &-icon {
+      box-shadow: var(--box-shadow);
+      cursor: pointer;
+      display: grid;
+      gap: 20px;
+      place-items: center;
+      text-decoration: none;
+      background: var(--color-main-gradient);
+      border-radius: 25px;
+      padding: 20px;
+      color: #fff;
+      box-sizing: border-box;
+
+      @media screen and (min-width: 768px) {
+         padding: 60px;
+
+         &:hover {
+            background: var(--color-main-hover);
+         }
+      }
+
+      img {
+         max-width: 100%;
+         width: 80px;
+         height: 80px;
+
+         @media screen and (min-width: 768px) {
+            width: 150px;
+            height: 150px;
+         }
+      }
    }
 }

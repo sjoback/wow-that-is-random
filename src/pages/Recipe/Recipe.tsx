@@ -96,9 +96,9 @@ function Recipe() {
       setShowResult(true);
    };
 
-   const optionsClasses = `${styles.containerOptions} ${
-      showResult ? styles.showResult : ""
-   }`;
+   // const optionsClasses = `${styles.containerOptions} ${
+   //    showResult ? styles.showResult : ""
+   // }`;
 
    const list = {
       show: {
@@ -124,7 +124,7 @@ function Recipe() {
 
    return (
       <div className={styles.container}>
-         <div className={optionsClasses}>
+         <div className={styles.containerOptions}>
             <motion.ul
                className={styles.list}
                variants={list}
@@ -134,7 +134,7 @@ function Recipe() {
                <motion.li
                   variants={listItem}
                   key="no meat"
-                  className={styles.button}
+                  className="btn-icon"
                   onClick={getNoMeat}
                >
                   <img src={noMeat} alt="No meat" loading="eager" />
@@ -143,7 +143,7 @@ function Recipe() {
                <motion.li
                   variants={listItem}
                   key="meat"
-                  className={styles.button}
+                  className="btn-icon"
                   onClick={getMeat}
                >
                   <img src={meat} alt="Meat" loading="eager" />
@@ -152,7 +152,7 @@ function Recipe() {
                <motion.li
                   variants={listItem}
                   key="random"
-                  className={styles.button}
+                  className="btn-icon"
                   onClick={getRandom}
                >
                   <img src={random} alt="Random" loading="eager" />
@@ -164,6 +164,9 @@ function Recipe() {
 
          {showResult && (
             <Result
+               onClick={() => {
+                  setShowResult(false);
+               }}
                category={category}
                type="recipe"
                result={JSON.stringify(result)}

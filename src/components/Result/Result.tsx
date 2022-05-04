@@ -1,11 +1,13 @@
 import styles from "./Result.module.scss";
 import { motion } from "framer-motion";
 import ImagePopUp from "../ImagePopUp/ImagePopUp";
+import Overlay from "../Overlay/Overlay";
 
 interface propTypes {
    type: string;
    result: string;
    category: string;
+   onClick(): any;
 }
 
 function Result(props: propTypes) {
@@ -24,6 +26,8 @@ function Result(props: propTypes) {
 
    return (
       <div className={styles.container}>
+         <Overlay opacity={0.2} onClick={props.onClick} />
+
          <motion.div
             animate={props.result.length > 2 ? "open" : "closed"}
             variants={variants}
@@ -39,6 +43,8 @@ function Result(props: propTypes) {
                </p>
                <h1>{result.strMeal}</h1>
             </div>
+
+            <div onClick={props.onClick} className={styles.close}></div>
          </motion.div>
       </div>
    );

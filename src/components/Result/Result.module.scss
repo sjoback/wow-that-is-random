@@ -1,18 +1,36 @@
 .container {
-   position: relative;
-   bottom: 0;
+   position: fixed;
+   z-index: 99;
+   height: 100vh;
+   left: 0;
+   top: 0;
    width: 100%;
    padding: 40px;
-   box-sizing: border-box;
-   background-color: #fff;
    display: flex;
    justify-content: center;
+   align-items: center;
 
    .content {
+      border-radius: 25px;
+      box-shadow: var(--box-shadow);
       width: 900px;
       max-width: 100%;
       display: flex;
+      min-height: 400px;
       gap: 30px;
+      position: relative;
+      background-color: #fff;
+      padding: 40px;
+   }
+
+   .close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      height: 40px;
+      width: 40px;
+      background-color: red;
+      cursor: pointer;
    }
 
    .overlay {
