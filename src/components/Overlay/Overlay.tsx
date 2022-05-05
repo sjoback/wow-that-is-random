@@ -2,7 +2,7 @@ import styles from "./Overlay.module.scss";
 
 interface propTypes {
    opacity?: number;
-   onClick?(): any;
+   onClick(): void;
 }
 
 function Overlay(props: propTypes) {

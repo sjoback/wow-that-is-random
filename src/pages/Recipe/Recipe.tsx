@@ -140,9 +140,7 @@ function Recipe() {
 
          {showResult && (
             <Result
-               onClick={() => {
-                  setShowResult(false);
-               }}
+               onClick={() => setShowResult(false)}
                category={category}
                type="recipe"
                result={JSON.stringify(result)}
