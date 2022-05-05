@@ -1,3 +1,4 @@
+@import "constants/_index.scss";
 @import "constants/_colors.scss";
 @import "constants/_form.scss";
 @import "constants/_button.scss";
@@ -11,13 +12,6 @@ main {
    justify-content: center;
    align-items: center;
    position: relative;
-   background-color: #fff;
-}
-
-.main {
-   padding-top: 60px;
-   height: 100%;
-   width: 100%;
 }
 
 nav a:first-child {
@@ -28,7 +22,7 @@ nav {
    .active {
       position: relative;
       box-shadow: var(--box-shadow);
-      background-color: var(--color-orange);
+      background-color: var(--color-main);
       border-radius: 30px;
    }
 }

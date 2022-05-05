@@ -1,8 +1,19 @@
 :root {
+   --color-main: #f3a933;
+   --color-main-gradient: linear-gradient(
+      180deg,
+      rgba(247, 194, 110, 1) 0%,
+      rgba(243, 169, 51, 1) 100%
+   );
+   --color-main-hover: #d98b0d;
+   --color-second: #7e4df1;
    --color-white: #fff;
    --color-black: #000;
    --color-orange: #f3a933;
    --color-orange-light: #f7c26e;
    --color-orange-dark: #d98b0d;
+   --color-purple: #7e4df1;
+   --color-purple-light: #aa89f5;
+   --color-purple-dark: #5413ec;
    --box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
 }

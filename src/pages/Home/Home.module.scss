@@ -1,3 +1,5 @@
+@import "../../styles/mixins";
+
 .container {
    position: relative;
    height: 100%;
@@ -5,8 +7,6 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   background-image: url(../../assets/random.jpeg);
-   background-size: cover;
 
    h1 {
       margin: 0 0 40px 0;
@@ -14,7 +14,11 @@
 
    &Buttons {
       display: grid;
+      max-width: 100%;
       gap: 20px;
-      grid-template-columns: 1fr 1fr;
+
+      @include breakpoint("tablet") {
+         grid-template-columns: 1fr 1fr;
+      }
    }
 }

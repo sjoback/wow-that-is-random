@@ -1,0 +1,60 @@
+@import "../../styles/mixins";
+
+.container {
+   position: absolute;
+   z-index: 98;
+   left: 50%;
+   transform: translateX(-50%);
+   background-color: var(--color-main);
+   box-shadow: var(--box-shadow);
+   padding: 5px;
+   border-radius: 25px;
+   width: 80px;
+   height: 40px;
+   cursor: pointer;
+   transition: var(--transition);
+
+   @include breakpoint("mobile") {
+      bottom: 20px;
+   }
+
+   @include breakpoint("tablet") {
+      top: 20px;
+   }
+
+   .button {
+      transition: var(--transition);
+      width: 30px;
+      height: 30px;
+      background-color: var(--color-second);
+      background-color: #fff;
+      border-radius: 100%;
+      position: absolute;
+   }
+
+   .left {
+      animation: left 0.15s forwards;
+
+      @keyframes left {
+         from {
+            left: calc(100% - 35px);
+         }
+         to {
+            left: 5px;
+         }
+      }
+   }
+
+   .right {
+      animation: right 0.15s forwards;
+
+      @keyframes right {
+         from {
+            right: calc(100% - 35px);
+         }
+         to {
+            right: 5px;
+         }
+      }
+   }
+}

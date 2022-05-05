@@ -1,33 +1,56 @@
 import styles from "./Result.module.scss";
 import { motion } from "framer-motion";
 import ImagePopUp from "../ImagePopUp/ImagePopUp";
+import Overlay from "../Overlay/Overlay";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 
 interface propTypes {
    type: string;
    result: string;
    category: string;
+   onClick(): any;
 }
 
 function Result(props: propTypes) {
+   const [open, toggleOpen] = useState(false);
    const result = JSON.parse(props.result);
 
-   const variants = {
-      open: { opacity: 1, x: 0, duration: 2 },
-      closed: { opacity: 0, x: "-100px", duration: 2 },
-   };
+   useEffect(() => {
+      if (props.result.length > 2) toggleOpen(true);
+   }, []);
 
-   const exitVariants = {
-      opacity: 0,
-      y: "-60px",
-      duration: 2,
+   function handleClick() {
+      toggleOpen(false);
+
+      setTimeout(function () {
+         props.onClick();
+      }, 300);
+   }
+
+   const enter = {
+      show: {
+         opacity: 1,
+         transition: {
+            duration: 0.3,
+         },
+      },
+      hidden: {
+         opacity: 0,
+         transition: {
+            duration: 0.3,
+         },
+      },
    };
 
    return (
       <div className={styles.container}>
+         <Overlay opacity={0.2} onClick={handleClick} />
+
          <motion.div
-            animate={props.result.length > 2 ? "open" : "closed"}
-            variants={variants}
-            exit={exitVariants}
+            animate={open ? "show" : "hidden"}
+            variants={enter}
             className={styles.content}
          >
             <ImagePopUp alt={result.strMeal} image={result.strMealThumb} />
@@ -38,6 +61,10 @@ function Result(props: propTypes) {
                   {props.category}
                </p>
                <h1>{result.strMeal}</h1>
+            </div>
+
+            <div onClick={handleClick} className={styles.close}>
+               <FontAwesomeIcon icon={faClose} />
             </div>
          </motion.div>
       </div>

@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import InfoBot from "./components/InfoBot/InfoBot";
 import Navigation from "./components/Settings/Navigation/Navigation";
+import Theme from "./components/Theme/Theme";
 import Home from "./pages/Home/Home";
 import Recipe from "./pages/Recipe/Recipe";
 import Workout from "./pages/Workout/Workout";
@@ -11,6 +13,8 @@ function App() {
          <BrowserRouter>
             <Navigation />
 
+            <Theme />
+
             <main>
                <Routes>
                   <Route path="/" element={<Home />} />
@@ -18,6 +22,8 @@ function App() {
                   <Route path="workout" element={<Workout />} />
                </Routes>
             </main>
+
+            <InfoBot />
          </BrowserRouter>
       </div>
    );
