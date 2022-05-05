@@ -36,7 +36,7 @@ function ImagePopUp(props: propTypes) {
    return (
       <div className={styles.container}>
          <div className={styles.closed} onClick={() => toggleOpen(true)}>
-            <img src={props.image} loading="eager" alt={props.alt} />
+            <img src={props.image} loading="lazy" alt={props.alt} />
          </div>
 
          {open && (
