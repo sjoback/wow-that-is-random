@@ -10,7 +10,7 @@ interface propTypes {
    type: string;
    result: string;
    category: string;
-   onClick(): any;
+   onClick(): void;
 }
 
 function Result(props: propTypes) {
