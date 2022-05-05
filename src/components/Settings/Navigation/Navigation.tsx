@@ -7,7 +7,7 @@ function Navigation() {
    return (
       <nav className={styles.container}>
          <NavLink to="/">
-            <img src={logo} alt="" />
+            <img src={logo} alt="So much randomness.." loading="eager" />
          </NavLink>
          <NavLink to="/recipe">Recipe</NavLink>
          <NavLink to="/workout">Workout</NavLink>
