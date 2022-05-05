@@ -1,7 +1,8 @@
+@import "../../styles/mixins";
+
 .container {
    position: absolute;
-   z-index: 99;
-   top: 20px;
+   z-index: 98;
    left: 50%;
    transform: translateX(-50%);
    background-color: var(--color-main);
@@ -12,6 +13,14 @@
    height: 40px;
    cursor: pointer;
    transition: var(--transition);
+
+   @include breakpoint("mobile") {
+      bottom: 20px;
+   }
+
+   @include breakpoint("tablet") {
+      top: 20px;
+   }
 
    .button {
       transition: var(--transition);

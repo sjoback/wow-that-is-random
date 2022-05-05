@@ -30,10 +30,30 @@ function InfoBot() {
       },
    ];
 
+   const container = {
+      hidden: { opacity: 0 },
+      show: {
+         opacity: 1,
+         transition: {
+            staggerChildren: 0.2,
+         },
+      },
+   };
+
+   const item = {
+      hidden: { opacity: 0, x: 20 },
+      show: { opacity: 1, x: 0 },
+   };
+
    return (
       <div className={classes}>
          {open && (
-            <motion.div className={styles.socials}>
+            <motion.div
+               variants={container}
+               initial="hidden"
+               animate="show"
+               className={styles.socials}
+            >
                {socials.map((social) => {
                   return (
                      <a
@@ -42,7 +62,8 @@ function InfoBot() {
                         target="_blank"
                         key={social.name}
                      >
-                        <img
+                        <motion.img
+                           variants={item}
                            src={social.icon}
                            alt={social.name}
                            loading="lazy"

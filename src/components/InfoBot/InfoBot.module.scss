@@ -1,4 +1,5 @@
 .container {
+   z-index: 99;
    position: absolute;
    bottom: 20px;
    right: 20px;
@@ -29,6 +30,7 @@
    .socials {
       z-index: 1;
       display: flex;
+      // flex-direction: row-reverse;
       height: 100%;
 
       a {
@@ -58,7 +60,7 @@
          width: 70px;
       }
       to {
-         width: auto;
+         width: 280px;
       }
    }
 

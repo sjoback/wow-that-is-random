@@ -9,13 +9,13 @@
       width: 100vw;
       height: 100vh;
       position: relative;
-      gap: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
       box-sizing: border-box;
       padding-top: 80px;
+      padding-bottom: 80px;
 
       @include breakpoint("tablet") {
          padding: 40px;
@@ -24,14 +24,14 @@
 
       .list {
          display: grid;
-         grid-template-columns: 1fr 1fr 1fr;
-         gap: 10px;
          position: relative;
          z-index: 1;
-         width: 900px;
+         gap: 20px;
          max-width: 100%;
+         place-items: center;
+
          @include breakpoint("tablet") {
-            gap: 20px;
+            grid-template-columns: 1fr 1fr 1fr;
          }
       }
    }
