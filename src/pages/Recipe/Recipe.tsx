@@ -1,10 +1,13 @@
 import { useState } from "react";
 import Result from "../../components/Result/Result";
 import styles from "./Recipe.module.scss";
-import noMeat from "../../assets/no-meat.svg";
-import meat from "../../assets/meat.svg";
-import random from "../../assets/random.svg";
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+   faCarrot,
+   faDrumstickBite,
+   faShuffle,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Recipe() {
    const [showResult, setShowResult] = useState(false);
@@ -115,7 +118,7 @@ function Recipe() {
       <div className={styles.container}>
          <div className={styles.containerOptions}>
             <motion.ul
-               className={styles.list}
+               className="icon-list"
                variants={list}
                initial="hidden"
                animate="show"
@@ -125,15 +128,15 @@ function Recipe() {
                   className="btn-icon"
                   onClick={getNoMeat}
                >
-                  <img src={noMeat} alt="No meat" loading="eager" />
+                  <FontAwesomeIcon icon={faCarrot} />
                </motion.li>
 
                <motion.li key="meat" className="btn-icon" onClick={getMeat}>
-                  <img src={meat} alt="Meat" loading="eager" />
+                  <FontAwesomeIcon icon={faDrumstickBite} />
                </motion.li>
 
                <motion.li key="random" className="btn-icon" onClick={getRandom}>
-                  <img src={random} alt="Random" loading="eager" />
+                  <FontAwesomeIcon icon={faShuffle} />
                </motion.li>
             </motion.ul>
          </div>

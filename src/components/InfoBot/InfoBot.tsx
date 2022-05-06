@@ -1,32 +1,32 @@
 import styles from "./InfoBot.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRobot, faClose } from "@fortawesome/free-solid-svg-icons";
+import {
+   faRobot,
+   faClose,
+   faBuildingUser,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import github from "../../assets/github.webp";
-import linked from "../../assets/linked.webp";
-import avatar from "../../assets/avatar.webp";
 
 function InfoBot() {
    const [open, toggleOpen] = useState(false);
-
    const classes = `${styles.container} ${open ? styles.open : styles.closed}`;
-
    const socials = [
       {
          name: "Github",
          link: "https://github.com/sjoback",
-         icon: github,
+         icon: faGithub,
       },
       {
          name: "Portfolio",
          link: "https://joakim.netlify.app/",
-         icon: avatar,
+         icon: faBuildingUser,
       },
       {
          name: "LinkedIn",
          link: "https://www.linkedin.com/in/joakim-sj%C3%B6b%C3%A4ck-8089a0110/",
-         icon: linked,
+         icon: faLinkedinIn,
       },
    ];
 
@@ -35,7 +35,8 @@ function InfoBot() {
       show: {
          opacity: 1,
          transition: {
-            staggerChildren: 0.2,
+            delay: 0.3,
+            staggerChildren: 0.3,
          },
       },
    };
@@ -62,12 +63,12 @@ function InfoBot() {
                         target="_blank"
                         key={social.name}
                      >
-                        <motion.img
-                           variants={item}
-                           src={social.icon}
-                           alt={social.name}
-                           loading="lazy"
-                        />
+                        <motion.div variants={item}>
+                           <FontAwesomeIcon
+                              style={{ fontSize: 32, color: "#fff" }}
+                              icon={social.icon}
+                           />
+                        </motion.div>
                      </a>
                   );
                })}
@@ -84,8 +85,6 @@ function InfoBot() {
                <FontAwesomeIcon icon={faRobot} />
             )}
          </div>
-
-         {/* {open && <div className={styles.open}>im open</div>} */}
       </div>
    );
 }

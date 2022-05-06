@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
-import bag from "../../assets/hot-pot.webp";
-import wo from "../../assets/wo.svg";
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDumbbell, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
    const list = {
@@ -31,13 +31,13 @@ function Home() {
          >
             <motion.li key="no meat">
                <Link to="/recipe" className="btn-icon">
-                  <img src={bag} alt="Meat" loading="eager" />
+                  <FontAwesomeIcon icon={faUtensils} />
                </Link>
             </motion.li>
 
             <motion.li key="meat">
                <Link to="/workout" className="btn-icon">
-                  <img src={wo} alt="Meat" loading="eager" />
+                  <FontAwesomeIcon icon={faDumbbell} />
                </Link>
             </motion.li>
          </motion.ul>
