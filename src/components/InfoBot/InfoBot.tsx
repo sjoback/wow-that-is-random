@@ -65,7 +65,7 @@ function InfoBot() {
                      >
                         <motion.div variants={item}>
                            <FontAwesomeIcon
-                              style={{ fontSize: 32, color: "#fff" }}
+                              style={{ fontSize: 22, color: "#fff" }}
                               icon={social.icon}
                            />
                         </motion.div>
