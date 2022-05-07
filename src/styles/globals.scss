@@ -2,8 +2,11 @@
 @import "constants/_colors.scss";
 @import "constants/_form.scss";
 @import "constants/_button.scss";
+@import "_typography.scss";
 @import "_button.scss";
 @import "_list.scss";
+@import "_link.scss";
+@import "_mixins.scss";
 
 main {
    display: flex;

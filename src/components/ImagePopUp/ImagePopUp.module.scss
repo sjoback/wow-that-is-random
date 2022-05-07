@@ -29,11 +29,9 @@
       cursor: pointer;
 
       img {
-         animation: fade-in 0.3s;
-         animation-delay: 4;
          border-radius: 20px;
-         width: 80px;
-         height: 80px;
+         width: 100%;
+         height: 100%;
          background-color: #222;
 
          @include breakpoint("tablet") {

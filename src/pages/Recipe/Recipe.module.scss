@@ -2,10 +2,13 @@
 
 .container {
    position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    height: 100%;
    width: 100%;
 
-   &Options {
+   .options {
       width: 100vw;
       height: 100vh;
       position: relative;
@@ -20,6 +23,61 @@
       @include breakpoint("tablet") {
          padding: 40px;
          padding-top: 80px;
+      }
+   }
+
+   .result {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 0 20px 0;
+      @include breakpoint("mobile") {
+      }
+
+      .content {
+         z-index: 100;
+         position: relative;
+         padding: 40px;
+         background: var(--color-main-gradient);
+         color: #fff;
+         width: 700px;
+         max-width: calc(100% - 40px);
+         max-height: 100%;
+         box-shadow: var(--box-shadow);
+         border-radius: 25px;
+         overflow: scroll;
+
+         .header {
+            display: grid;
+            // grid-template-columns: 150px 1fr;
+            gap: 30px;
+
+            @include breakpoint("tablet") {
+               grid-template-columns: 150px 1fr;
+            }
+
+            img {
+               width: 100%;
+               height: 100%;
+               border-radius: 15px;
+            }
+
+            .text {
+               display: grid;
+               gap: 10px;
+            }
+
+            a {
+               color: #fff;
+
+               &:hover {
+                  text-decoration: underline;
+               }
+            }
+         }
       }
    }
 }

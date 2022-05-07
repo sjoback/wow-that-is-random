@@ -32,12 +32,14 @@ function Result(props: propTypes) {
    const enter = {
       show: {
          opacity: 1,
+         y: "0px",
          transition: {
             duration: 0.3,
          },
       },
       hidden: {
          opacity: 0,
+         y: "-500px",
          transition: {
             duration: 0.3,
          },
@@ -46,10 +48,11 @@ function Result(props: propTypes) {
 
    return (
       <div className={styles.container}>
-         <Overlay opacity={0.2} onClick={handleClick} />
+         {/* <Overlay opacity={0.2} onClick={handleClick} /> */}
 
          <motion.div
             animate={open ? "show" : "hidden"}
+            initial="show"
             variants={enter}
             className={styles.content}
          >

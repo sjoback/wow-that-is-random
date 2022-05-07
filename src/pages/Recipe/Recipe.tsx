@@ -1,18 +1,17 @@
 import { useState } from "react";
-import Result from "../../components/Result/Result";
 import styles from "./Recipe.module.scss";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
    faCarrot,
    faDrumstickBite,
    faShuffle,
 } from "@fortawesome/free-solid-svg-icons";
+import Overlay from "../../components/Overlay/Overlay";
 
 function Recipe() {
    const [showResult, setShowResult] = useState(false);
-   const [result, setResult] = useState("");
-   const [category, setCategory] = useState("");
+   const [result, setResult] = useState(Object);
 
    function randomNumber(length: number) {
       const rand = Math.random() * length;
@@ -21,7 +20,6 @@ function Recipe() {
 
    const getMeat = async () => {
       setResult("");
-      setCategory("Meat");
       Promise.all([
          fetch(
             "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork"
@@ -55,15 +53,14 @@ function Recipe() {
       const response = await fetch(
          `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
       );
-      const result = await response.json();
-      console.log(result.meals[0]);
-      setResult(result.meals[0]);
+      const res = await response.json();
+      console.log(res.meals[0]);
+      setResult(res.meals[0]);
       setShowResult(true);
    };
 
    const getNoMeat = async () => {
       setResult("");
-      setCategory("No meat");
       Promise.all([
          fetch(
             "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan"
@@ -88,7 +85,6 @@ function Recipe() {
 
    const getRandom = async () => {
       setResult("");
-      setCategory("Random");
       const response = await fetch(
          "https://www.themealdb.com/api/json/v1/1/random.php"
       );
@@ -97,58 +93,105 @@ function Recipe() {
       setShowResult(true);
    };
 
-   const list = {
-      show: {
-         transition: {
-            duration: 0.2,
-         },
-         opacity: 1,
-         scale: 1,
-      },
-      hidden: {
-         transition: {
-            duration: 0.2,
-         },
-         scale: 0.95,
-         opacity: 1,
-      },
-   };
-
    return (
       <div className={styles.container}>
-         <div className={styles.containerOptions}>
-            <motion.ul
-               className="icon-list"
-               variants={list}
-               initial="hidden"
-               animate="show"
-            >
-               <motion.li
-                  key="no meat"
-                  className="btn-icon"
-                  onClick={getNoMeat}
+         <AnimatePresence>
+            {!showResult && (
+               <motion.ul
+                  className="icon-list"
+                  key="list"
+                  initial={{
+                     opacity: 0,
+                     y: "-100px",
+                  }}
+                  animate={{
+                     opacity: 1,
+                     y: "0px",
+                  }}
+                  transition={{
+                     duration: 0.3,
+                     ease: "easeOut",
+                  }}
+                  exit={{
+                     opacity: 0,
+                     y: "-100px",
+                     transition: { duration: 0.3 },
+                  }}
                >
-                  <FontAwesomeIcon icon={faCarrot} />
-               </motion.li>
+                  <li key="no meat" className="btn-icon" onClick={getNoMeat}>
+                     <FontAwesomeIcon icon={faCarrot} />
+                  </li>
 
-               <motion.li key="meat" className="btn-icon" onClick={getMeat}>
-                  <FontAwesomeIcon icon={faDrumstickBite} />
-               </motion.li>
+                  <li key="meat" className="btn-icon" onClick={getMeat}>
+                     <FontAwesomeIcon icon={faDrumstickBite} />
+                  </li>
 
-               <motion.li key="random" className="btn-icon" onClick={getRandom}>
-                  <FontAwesomeIcon icon={faShuffle} />
-               </motion.li>
-            </motion.ul>
-         </div>
+                  <li key="random" className="btn-icon" onClick={getRandom}>
+                     <FontAwesomeIcon icon={faShuffle} />
+                  </li>
+               </motion.ul>
+            )}
+         </AnimatePresence>
 
-         {showResult && (
-            <Result
-               onClick={() => setShowResult(false)}
-               category={category}
-               type="recipe"
-               result={JSON.stringify(result)}
-            />
-         )}
+         <AnimatePresence>
+            {showResult && (
+               <div className={styles.result}>
+                  <Overlay onClick={() => setShowResult(false)} opacity={0} />
+
+                  <motion.div
+                     className={styles.content}
+                     key="result"
+                     initial={{
+                        opacity: 0,
+                        y: "100px",
+                     }}
+                     animate={{
+                        opacity: 1,
+                        y: "0px",
+                     }}
+                     transition={{
+                        duration: 0.2,
+                        ease: "easeOut",
+                     }}
+                     exit={{
+                        opacity: 0,
+                        y: "100px",
+                        transition: { duration: 0.2 },
+                     }}
+                  >
+                     <div className={styles.header}>
+                        <img
+                           src={result.strMealThumb}
+                           alt={result.strMeal}
+                           loading="lazy"
+                        />
+
+                        <div className={styles.text}>
+                           <h1>{result.strMeal}</h1>
+                           <h3>
+                              <a
+                                 href={result.strSource}
+                                 target="_blank"
+                                 rel="noreferrer"
+                              >
+                                 Go to site
+                              </a>
+                           </h3>
+                           <h3>
+                              <a
+                                 href={result.strYoutube}
+                                 target="_blank"
+                                 rel="noreferrer"
+                              >
+                                 Youtube
+                              </a>
+                           </h3>
+                        </div>
+                     </div>
+                  </motion.div>
+               </div>
+            )}
+         </AnimatePresence>
       </div>
    );
 }

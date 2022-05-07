@@ -1,5 +1,5 @@
 .container {
-   position: fixed;
+   position: relative;
    z-index: 99;
    height: 100vh;
    left: 0;
@@ -19,7 +19,8 @@
       min-height: 400px;
       gap: 30px;
       position: relative;
-      background-color: #fff;
+      background-color: var(--color-main);
+      color: #fff;
       padding: 40px;
    }
 
