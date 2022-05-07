@@ -8,12 +8,10 @@ import {
    faShuffle,
 } from "@fortawesome/free-solid-svg-icons";
 import Overlay from "../../components/Overlay/Overlay";
-import ImagePopUp from "../../components/ImagePopUp/ImagePopUp";
 
 function Recipe() {
    const [showResult, setShowResult] = useState(false);
    const [result, setResult] = useState(Object);
-   const [category, setCategory] = useState(String);
 
    function randomNumber(length: number) {
       const rand = Math.random() * length;
@@ -22,7 +20,6 @@ function Recipe() {
 
    const getMeat = async () => {
       setResult("");
-      setCategory("Meat");
       Promise.all([
          fetch(
             "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork"
@@ -64,7 +61,6 @@ function Recipe() {
 
    const getNoMeat = async () => {
       setResult("");
-      setCategory("No meat");
       Promise.all([
          fetch(
             "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan"
@@ -89,7 +85,6 @@ function Recipe() {
 
    const getRandom = async () => {
       setResult("");
-      setCategory("Random");
       const response = await fetch(
          "https://www.themealdb.com/api/json/v1/1/random.php"
       );
